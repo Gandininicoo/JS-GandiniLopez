@@ -7,18 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="img/met.png">
     <title>SISTEMA DE POSICIONES</title>
-    <link rel="stylesheet" href="sass/estilos.css" id="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css" id="stylesheet">
 </head>
 
 <body>
     <div class="header">
-        <a href="index.html"><img src="img/logo.png"  alt="Cronomet logo" width="288px" height="55px"></a>
+        <a href="index.html"><img src="img/logo.png"  alt="NIK-01 Logo" width="100%" height="100%"></a>
     </div>
     <div class="body">
-        <div class="barraBotones">
+        <div class="contenedorEvento" id="contenedorEvento">
+            <input type="text" id="nombreEvento" value="" placeholder="Nombre del evento">
             <button class="boton" id="botonCC">CREAR EVENTO</button>
         </div>
-        <div id="menuCompetidores"></div>
+        <div id="menuCompetidores" class="menuCompetidores"></div>
         <div id="Carrera"></div>
         <div id="tabla" class="table">
         </div>
@@ -26,9 +27,11 @@
     <div class="barraInferior">
         <button class="boton lgmode" id="botonLM"></button>
         <button class="boton dkmode" id="botonDM"></button>
+        <button class="boton print" id="printButton">Imprimir Resultados</button>
     </div>
     <script src="js/classes/listaNadadores.class.js"></script>
     <script src="js/classes/nadador.class.js"></script>
+    <script src="js/classes/stylesheet.js"></script>
     <script src="js/main.js"></script>
 </body>
 

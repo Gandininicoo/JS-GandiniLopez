@@ -7,8 +7,9 @@
     display: flex;
     flex-direction: column;
     background-color: #ffff;
-    min-height: 90vh;
+    min-height: 100vh;
     align-content: center;
+    padding-bottom: 20px;
 }
 .header{
     display: flex;
@@ -21,6 +22,9 @@
     a{
         height: 55px;
         width: 288px;
+    }
+    @media print{
+        display: none;
     }
 }
 .table{
@@ -39,14 +43,15 @@
     border: 2px solid black;
     padding: 8px;
         th{
-            color: orangered;
-            border: 2px solid orangered;
+            color: #527eef;
+            border: 2px solid #527eef;
             padding: .5em;
             width: 10%;
         }
         td{
             padding: .5em;
-            border: 2px solid orangered;
+            border: 2px solid #527eef;
+            color: #323d85;
             &.nadador{
                 width: 70%;
             }
@@ -57,29 +62,47 @@
         }
     }
 }
-.barraBotones{
+.contenedorEvento{
     display: flex;
     flex-wrap: wrap;
     padding: 10px 0px;
     width: 100%;
-    background-color: orangered;
-    justify-content: space-around;
+    background-color: #527eef;
+    justify-content: center;
+    @media print{
+        display: none;
+    }
+    input{
+        width: 30%;
+        background-color: white;
+        border: 2px solid #323d85; 
+        border-radius: 10px;
+        padding: 5px;
+        font-family: sans-serif;
+        font-size: .8rem;
+        font-weight: 300;
+        color: #323d85;
+        margin: 0px 5px;
+        height: 2em;
+    }
     .boton{
-        width: 20%;
+        width: 10%;
         background-color: white;
         border: 2px solid ; 
         border-radius: 10px;
         padding: 5px;
         font-family: sans-serif;
-        font-size: 1.3rem;
+        font-size: .8rem;
         font-weight: 300;
-        color: black;
+        color: #323d85;
+        margin: 0px 5px;
+        height: 3em;
         @media all and (max-width: 670px){
             width: 80%;
             margin-top: 6px;
         }
         &:hover{
-            background-color: black;
+            background-color: #323d85;
             color: white;
         }
     }
@@ -95,6 +118,61 @@
     font-size: 1.3rem;
     padding: 20px 0px;
 }
+.menuCompetidoresDesplegado{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: #323d85;
+    padding: 20px;
+    @media print{
+        display: none;
+    }
+    button{
+        width: 10%;
+        background-color: white;
+        border: 2px solid ; 
+        border-radius: 10px;
+        padding: 5px;
+        font-family: sans-serif;
+        font-size: .8rem;
+        font-weight: 300;
+        color: #323d85;
+        margin: 0px 5px;
+        height: 2.8em;
+        @media all and (max-width: 670px){
+            width: 80%;
+            margin-top: 6px;
+        }
+        &:hover{
+            background-color: #323d85;
+            color: white;
+        }
+    }
+    input{
+        background-color: white;
+        border: 2px solid #323d85; 
+        border-radius: 10px;
+        padding: 5px;
+        font-family: sans-serif;
+        font-size: .8rem;
+        font-weight: 300;
+        color: #323d85;
+        margin: 0px 1px;
+        height: 1.5em;
+    }
+    .posicion{
+        width: 4%;
+        text-align: center;
+    }
+    .nombre{
+        width: 35%;
+    }
+    .tiempo{
+        width: 10%;
+    }
+}
 .barraInferior{
     display: flex;
     justify-content: flex-end;
@@ -102,6 +180,9 @@
     height: 30px;
     background-color: lightgrey;
     color: black;
+    @media print{
+        display: none;
+    }
     .boton{
         margin-left: 5px;
         height: 30px;
@@ -116,6 +197,11 @@
         }
         &.lgmode{
             background-image: url(../img/sol.svg);
+        }
+        &.print{
+            width: auto;
+            padding: 0px .5em;
+            background-color: #ffff;
         }
     }
 }
