@@ -1,18 +1,46 @@
-const botonLM = document.getElementById("botonLM")
-botonLM.addEventListener("click", () => {
-  lightMode()
-})
+const stylesheet = document.getElementById("stylesheet")
+cargarPreferenciaModo()
 
-const botonDM = document.getElementById("botonDM")
+console.log(stylesheet)
+const botonLM = document.getElementById("botonLM");
+botonLM.addEventListener("click", () => {
+  lightMode();
+  console.log(stylesheet)
+});
+
+const botonDM = document.getElementById("botonDM");
 botonDM.addEventListener("click", () => {
-  darkMode()
-})
+  darkMode();
+  console.log(stylesheet)
+});
 
 function lightMode() {
-    stylesheet.setAttribute("href","css/estilos.css")
+  stylesheet.setAttribute("href", "css/estilos.css");
+  let modo = "lightMode"
+  guardarPreferenciasModo(modo)
+}
+
+function darkMode() {
+  stylesheet.setAttribute("href", "css/estilos2.css");
+  let modo = "darkMode"
+  guardarPreferenciasModo(modo)
+}
+
+function guardarPreferenciasModo(modo){
+if(modo === "darkMode"){
+    localStorage.setItem("modo", "darkMode")
+}
+else{
+  localStorage.setItem("modo", "lightMode")
+}
+}
+
+function cargarPreferenciaModo(){
+  let modoStorage = localStorage.getItem("modo")
+  if(modoStorage==="darkMode"){
+    darkMode()
   }
-  
-  function darkMode() {
-    stylesheet.setAttribute("href","css/estilos2.css")
+  else{
+    lightMode()
   }
-  
+}

@@ -126,3 +126,4 @@ function reiniciarEvento() {
   let tablaNadadores = document.getElementById("tabla");
   tablaNadadores.innerHTML = ""
 }
+
