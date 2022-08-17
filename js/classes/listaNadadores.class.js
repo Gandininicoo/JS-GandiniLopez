@@ -16,10 +16,20 @@ class ListaNadadores {
         if(finded){
             const index = this.nadadores.indexOf(finded)
             this.nadadores.splice(index, 1)
-            alert(`Competidor borrado con exito`)
+            Swal.fire({
+                title: 'COMPETIDOR BORRADO CON EXITO',
+                text: 'Ingrese un nombre valido para su evento',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+            })
         }
         else {
-            alert(`No se encontro el competidor a borrar`)
+            Swal.fire({
+                title: 'NO SE PUDO BORRAR',
+                text: 'No se ha encontrado el competidor',
+                icon: 'question',
+                confirmButtonText: 'Aceptar'
+            })
             }
     }
 }

@@ -2,7 +2,8 @@ let nadadores = [];
 const listaNadadores = new ListaNadadores(nadadores);
 const headDocument = document.getElementById("headDocument");
 const CrearCarreraBTN = document.getElementById("botonCC");
-const printButton = document.getElementById("printButton")
+const printButton = document.getElementById("printButton");
+
 
 //imprimir
 printButton.addEventListener("click",() => {
@@ -15,9 +16,19 @@ botonCC.addEventListener("click", () => {
 function crearCarrera() {
   const nombreCarrera = document.getElementById("nombreEvento").value;
   if (nombreCarrera === null) {
-    alert("Opcion no válida");
+    Swal.fire({
+      title: 'Nombre Invalido',
+      text: 'Ingrese un nombre valido para su evento',
+      icon: 'error',
+      confirmButtonText: 'Aceptar'
+    })
   } else if (nombreCarrera === "") {
-    alert("Ingrese una nombre valido");
+    Swal.fire({
+      title: 'Nombre Invalido',
+      text: 'Ingrese un nombre valido para su evento',
+      icon: 'error',
+      confirmButtonText: 'Aceptar'
+    })
   } else {
     const Carrera = document.getElementById(`Carrera`);
     Carrera.innerHTML = `<div class="carrera"><p> Evento "${nombreCarrera}" </p></div>`;
@@ -63,9 +74,19 @@ function crearNadador() {
     let posicion = Number(document.getElementById("posicion").value);
     let tiempo = document.getElementById("tiempo").value;
     if (nombre === null) {
-      alert("Opcion no válida");
+      Swal.fire({
+        title: 'Opcion Invalida',
+        text: 'Ingrese una opcion válida para continuar',
+        icon: 'question',
+        confirmButtonText: 'Aceptar'
+      })
     } else if (nombre === "") {
-      alert("Ingrese una nombre valido");
+      Swal.fire({
+        title: 'Nombre Invalido',
+        text: 'Ingrese un nombre valido para continuar',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      })
     } else {
       let nadador = new Nadador(
         listaNadadores.darCantidad() + 1,
