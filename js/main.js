@@ -1,34 +1,55 @@
 let nadadores = [];
+let carrito = [];
+const carritoListado = new CarritoListado(carrito);
 const listaNadadores = new ListaNadadores(nadadores);
 const headDocument = document.getElementById("headDocument");
-const CrearCarreraBTN = document.getElementById("botonCC");
 const printButton = document.getElementById("printButton");
-
-
+const mainBody = document.getElementById("mainBody");
+const creadorEventosBTN = document.getElementById("creadorEventosBTN");
+const tiendaBTN = document.getElementById("tiendaBTN");
+const pageName = document.getElementById("metaName");
 //imprimir
-printButton.addEventListener("click",() => {
-  window.print()
-})
-//crear evento
-botonCC.addEventListener("click", () => {
-  crearCarrera();
+printButton.addEventListener("click", () => {
+  window.print();
 });
+
+//creador de eventos
+creadorEventosBTN.addEventListener("click", () => {
+  inicioCreadorEventos();
+});
+function inicioCreadorEventos() {
+  pageName.innerText = "SISTEMA DE POSICIONES";
+  mainBody.innerHTML = `<div class="contenedorEvento contenedorPieHeader" id="contenedorEvento">
+                        <input type="text" id="nombreEvento" value="" placeholder="Nombre del evento">
+                        <button class="boton" id="botonCC">CREAR EVENTO</button>
+                      </div>
+                      <div id="menuCompetidores" class="menuCompetidores"></div>
+                      <div id="Carrera"></div>
+                      <div id="tabla" class="table">
+                      </div>`;
+  botonCC.addEventListener("click", () => {
+    crearCarrera();
+  });
+}
+const CrearCarreraBTN = document.getElementById("botonCC");
+
+//crear evento
 function crearCarrera() {
   const nombreCarrera = document.getElementById("nombreEvento").value;
   if (nombreCarrera === null) {
     Swal.fire({
-      title: 'Nombre Invalido',
-      text: 'Ingrese un nombre valido para su evento',
-      icon: 'error',
-      confirmButtonText: 'Aceptar'
-    })
+      title: "Nombre Invalido",
+      text: "Ingrese un nombre valido para su evento",
+      icon: "error",
+      confirmButtonText: "Aceptar",
+    });
   } else if (nombreCarrera === "") {
     Swal.fire({
-      title: 'Nombre Invalido',
-      text: 'Ingrese un nombre valido para su evento',
-      icon: 'error',
-      confirmButtonText: 'Aceptar'
-    })
+      title: "Nombre Invalido",
+      text: "Ingrese un nombre valido para su evento",
+      icon: "error",
+      confirmButtonText: "Aceptar",
+    });
   } else {
     const Carrera = document.getElementById(`Carrera`);
     Carrera.innerHTML = `<div class="carrera"><p> Evento "${nombreCarrera}" </p></div>`;
@@ -75,18 +96,18 @@ function crearNadador() {
     let tiempo = document.getElementById("tiempo").value;
     if (nombre === null) {
       Swal.fire({
-        title: 'Opcion Invalida',
-        text: 'Ingrese una opcion válida para continuar',
-        icon: 'question',
-        confirmButtonText: 'Aceptar'
-      })
+        title: "Opcion Invalida",
+        text: "Ingrese una opcion válida para continuar",
+        icon: "question",
+        confirmButtonText: "Aceptar",
+      });
     } else if (nombre === "") {
       Swal.fire({
-        title: 'Nombre Invalido',
-        text: 'Ingrese un nombre valido para continuar',
-        icon: 'error',
-        confirmButtonText: 'Aceptar'
-      })
+        title: "Nombre Invalido",
+        text: "Ingrese un nombre valido para continuar",
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      });
     } else {
       let nadador = new Nadador(
         listaNadadores.darCantidad() + 1,
@@ -125,7 +146,7 @@ function listarNadadores() {
   );
   listaNadadores.nadadores.forEach((nadador) => {
     const tablaNadador = document.createElement("table");
-    tablaNadador.innerHTML = `<tr><th>${nadador.posicion}</th> <td class="nadador">${nadador.nombre}</td> <td class="tiempo">${nadador.tiempo}</td>`;
+    tablaNadador.innerHTML = `<th>${nadador.posicion}</th> <td class="nadador">${nadador.nombre}</td> <td class="tiempo">${nadador.tiempo}</td>`;
     tablaNadadores.appendChild(tablaNadador);
   });
   console.log(nadadores);
@@ -145,6 +166,78 @@ function reiniciarEvento() {
   });
   nadadores = [];
   let tablaNadadores = document.getElementById("tabla");
-  tablaNadadores.innerHTML = ""
+  tablaNadadores.innerHTML = "";
 }
 
+//Abrir Tienda
+tiendaBTN.addEventListener("click", () => {
+  abrirTienda();
+});
+function abrirTienda() {
+  pageName.innerText = "TIENDA DE NATACION";
+  mainBody.innerHTML = `<div class="contenedorPieHeader headerTienda"> <div></div> <h1>Articulos de Natacion</h1> <button id="carritoBTN" class="carritoBTN carritoVacio"></button></div>
+                      <div id="productosImpresos"></div>`;
+  importarProductos();
+}
+
+
+
+//Tienda Natacion
+function importarProductos() {
+  fetch("../data/merch.json")
+    .then((response) => response.json())
+    .then((json) => mostrarProductos(json))
+    .then()
+}
+
+function mostrarProductos(productos) {
+  productos.forEach((producto) => {
+    mostrarProducto(producto);
+  });
+  iniciarCarrito()
+}
+function mostrarProducto(producto) {
+  const productosImpresos = document.getElementById("productosImpresos");
+  const tarjetaProducto = document.createElement("div");
+  const productoPrecio = Number(producto.precioProducto);
+  tarjetaProducto.className += "tarjetaProducto";
+  tarjetaProducto.innerHTML = `<article class="imgProducto"><img src="${producto.img}" alt="${producto.nombreProducto}"></article>
+                            <h1 class="nombreProducto">${producto.nombreProducto}</h1>
+                            <div class="contenedorPrecio"><p>AR$</p><h3 class="precioProducto">${productoPrecio}</h3></div>
+                            <button class="addCartBTN"> Enviar al carrito</button>`;
+  productosImpresos.appendChild(tarjetaProducto)
+}
+
+//Carrito
+
+function iniciarCarrito(){
+  getCartButton()
+}
+function getCartButton(){
+  const addCartButtons = document.querySelectorAll(".addCartBTN")
+  console.log(addCartButtons)
+  addCartButtons.forEach((addCartBTN)=>{addtoCartClick(addCartBTN)})
+}
+function addtoCartClick(addCartBTN){
+  addCartBTN.addEventListener("click", addtoCartClicked)
+}
+function addtoCartClicked(event){
+  let botonCarrito = event.target;
+  let item = botonCarrito.closest(".tarjetaProducto")
+  let itemNombre = item.querySelector(".nombreProducto").textContent
+  let itemPrecio = Number(item.querySelector(".precioProducto").textContent)
+  let itemImagen = item.querySelector(".imgProducto").src
+  let itemCantidad = Number(1)
+  console.log (itemNombre)
+  añadirAlCarrito(itemNombre, itemPrecio, itemImagen, itemCantidad);
+}
+function añadirAlCarrito(itemNombre, itemPrecio, itemImagen,itemCantidad){
+    let productoCarrito = new ProductoCarrito(
+      itemNombre,
+      itemPrecio,
+      itemImagen,
+      itemCantidad 
+    );
+    carritoListado.agregarProductoCarrito(productoCarrito)
+    console.log(carrito)
+}

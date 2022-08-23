@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head id="headDocument">
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="img/nik-icon..png">
-    <title>SISTEMA DE POSICIONES</title>
+    <title id="metaName">NIK-01</title>
     <link rel="stylesheet" href="css/estilos.css" id="stylesheet">
 </head>
 
 <body>
+    <div class="backgroundcarrito"></div>
     <div class="header">
-        <a href="index.html"><img src="img/nik-01-logo.png"  alt="NIK-01 Logo" width="100%" height="100%"></a>
+        <a href="index.html"><img src="img/nik-01-logo.png" alt="NIK-01 Logo" width="100%" height="100%"></a>
+        <div>
+            <button id="creadorEventosBTN">Creador Eventos</button>
+            <button id="tiendaBTN">Tienda Natacion</button>
+        </div>
     </div>
-    <div class="body">
-        <div class="contenedorEvento" id="contenedorEvento">
-            <input type="text" id="nombreEvento" value="" placeholder="Nombre del evento">
-            <button class="boton" id="botonCC">CREAR EVENTO</button>
-        </div>
-        <div id="menuCompetidores" class="menuCompetidores"></div>
-        <div id="Carrera"></div>
-        <div id="tabla" class="table">
-        </div>
+    <div class="body" id="mainBody">
+        <div class="contenedorPieHeader"> <h1>Bienvenidos a NIK-01</h1></div>
     </div>
     <div class="barraInferior">
         <button class="boton lgmode" id="botonLM"></button>
         <button class="boton dkmode" id="botonDM"></button>
         <button class="boton print" id="printButton">Imprimir Resultados</button>
     </div>
+    
+    <!--Scripts-->
     <script src="js/classes/listaNadadores.class.js"></script>
     <script src="js/classes/nadador.class.js"></script>
+    <script src="js/classes/carritoListado.class.js"></script>
+    <script src="js/classes/producto.class.js"></script>
     <script src="js/classes/stylesheet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/main.js"></script>
