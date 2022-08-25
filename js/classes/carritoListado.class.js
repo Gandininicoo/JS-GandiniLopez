@@ -31,6 +31,7 @@ class CarritoListado{
             const indexProductoABorrar = this.carrito.indexOf(productoEncontrado)
             this.carrito.splice(indexProductoABorrar, 1)
         }
+        imprimirTotalCarrito()
     }
     buscarSumarProducto(productoASumar){
         const productoSumarEncontrado = this.carrito.find(prod => prod.nombre === productoASumar)
