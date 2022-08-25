@@ -429,10 +429,34 @@
         }
     }
 }
-.carritoDesplegado{
+footer{
     display: flex;
     flex-wrap: wrap;
-    right: 0px;
-    min-height: 80vh;
-    align-content: flex-start;
+    height: 60px;
+    background-color: #527eef;
+    width: 100%;
+    justify-content: space-around;
+    align-content: center;
+    font-family: sans-serif;
+    color: #fff;
+    div{
+        align-self: center;
+        display: flex;
+        width: 80%;
+        justify-content: space-between;
+        font-size: 1.2rem;
+    }
+    button{
+        align-self: center;
+        padding: .5em;
+        align-self: center;
+        border-radius: 20px;
+    }
+}
+.carritoDesplegado{
+display: flex;
+flex-wrap: wrap;
+right: 0px;
+min-height: 80vh;
+align-content: flex-start;
 }
