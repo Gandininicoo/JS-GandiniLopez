@@ -343,9 +343,6 @@
     top: 60px;
     right: 0px;
     width:70vw;
-    height: 0px;
-    min-height: 0;
-    max-height: 100%;
     background-color: #fff;
     border: 5px solid #527eef;
     border-radius: 0px 0px 20px 20px;
@@ -373,7 +370,9 @@
         }
     }
     #bodyCarrito{
+        min-height: 80vh;
         width: 100%;
+        align-content: flex-start;
         display: flex;
         flex-wrap: wrap;
         .productoCarrito{
@@ -388,6 +387,8 @@
                 height: 100%;
                 aspect-ratio: 1 / 1;
                 width: auto;
+                border: 1px solid #527eef;
+                border-radius: 70px;
                 align-self: center;
             }
             .nombreProductoCarrito{
@@ -419,6 +420,30 @@
                 background-color: red;
                 color: #fff;
             }
+        }
+    }
+    footer{
+        display: flex;
+        flex-wrap: wrap;
+        height: 60px;
+        background-color: #527eef;
+        width: 100%;
+        justify-content: space-around;
+        align-content: center;
+        font-family: sans-serif;
+        color: #fff;
+        div{
+            align-self: center;
+            display: flex;
+            width: 80%;
+            justify-content: space-between;
+            font-size: 1.2rem;
+        }
+        button{
+            align-self: center;
+            padding: .5em;
+            align-self: center;
+            border-radius: 20px;
         }
     }
 }

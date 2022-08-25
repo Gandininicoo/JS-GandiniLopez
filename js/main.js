@@ -149,11 +149,11 @@ function listarNadadores() {
     tablaNadador.innerHTML = `<th>${nadador.posicion}</th> <td class="nadador">${nadador.nombre}</td> <td class="tiempo">${nadador.tiempo}</td>`;
     tablaNadadores.appendChild(tablaNadador);
   });
-  console.log(nadadores);
 }
 
 //reiniciarEvento
 function reiniciarEvento() {
+  listaNadadores.nadadores = []
   menuCompetidores.setAttribute("class", "");
   menuCompetidores.innerHTML = "";
   let Carrera = document.getElementById(`Carrera`);
@@ -177,7 +177,11 @@ function abrirTienda() {
   pageName.innerText = "TIENDA DE NATACION";
   mainBody.innerHTML = `<div class="contenedorPieHeader headerTienda"> <div></div> <h1>Articulos de Natacion</h1> <button id="carritoBTN" class="carritoBTN carritoVacio"></button></div>
                       <div id="productosImpresos"></div>
-                      <div id="carrito" class="carrito"><header><p>Carrito de compras</p> <button id="cerrarCarritoBTN" class="carritoBTN carritoCerrar"> </header> <div id="bodyCarrito"></div></div>`;
+                      <div id="carrito" class="carrito">
+                      <header><p>Carrito de compras</p> <button id="cerrarCarritoBTN" class="carritoBTN carritoCerrar"> </header>
+                      <div id="bodyCarrito"></div>
+                      <footer><div><p>TOTAL CARRITO</p><div id="totalCarrito"></div></div> <button>Enviar Compra</butto></footer>
+                      </div>`;
   importarProductos();
   let cerrarCarritoBTN = document.getElementById("cerrarCarritoBTN")
   cerrarCarritoBTN.addEventListener("click", () =>{cerrarCarrito()})
@@ -226,6 +230,8 @@ function mostrarProducto(producto) {
 
 function iniciarCarrito(){
   getCartButton()
+  imprimirEnCarrito()
+  imprimirTotalCarrito()
 }
 function getCartButton(){
   const addCartButtons = document.querySelectorAll(".addCartBTN")
@@ -243,7 +249,6 @@ function addtoCartClicked(event){
   let itemImagen = item.querySelector(".imagenProducto").src
   let itemCantidad = Number(1)
   let itemSubTotal = Number(item.querySelector(".precioProducto").textContent)
-  console.log (itemNombre)
   añadirAlCarrito(itemNombre, itemPrecio, itemImagen, itemCantidad, itemSubTotal);
 }
 function añadirAlCarrito(itemNombre, itemPrecio, itemImagen,itemCantidad,itemSubTotal){
@@ -269,8 +274,64 @@ function imprimirEnCarrito(){
                                   <p  class="nombreProductoCarrito">${productoCarrito.nombre}</p>
                                   <div class="cantidadProductoCarrito"><button class="restarCantidadProducto">-</button><p>${productoCarrito.cantidad}</p><button class="sumarCantidadProducto">+</button></div>
                                   <p  class="totalPrecioProductoCarrito">${productoCarrito.subTotal}</p>
-                                  <button class="eliminarProductoCarrito">X</button>
-    `
+                                  <button class="eliminarProductoCarrito">X</button>`
     carritoAImprimir.appendChild(productoImpreso)
+    getSumarButton()
+    getDeleteButton()
+    getRestarButton()
+    imprimirTotalCarrito()
   })
+}
+function imprimirTotalCarrito()
+{
+  let totalCarritoContenedor = document.getElementById("totalCarrito")
+  let totalCarritoACobrar = carritoListado.carrito.reduce((acc, prod) => acc + prod.subTotal, 0)
+  totalCarritoContenedor.innerText = `AR$ : ${totalCarritoACobrar}`
+}
+
+function getDeleteButton(){
+  const deleteButtons = document.querySelectorAll(".eliminarProductoCarrito")
+  console.log(deleteButtons)
+  deleteButtons.forEach((deleteButton) => (deleteButtonClick(deleteButton)))
+}
+function deleteButtonClick(deleteButton){
+  deleteButton.addEventListener("click", deleteButtonClicked)
+}
+function deleteButtonClicked(event){
+  let deleteBTN = event.target
+  let itemABorrar = deleteBTN.closest(".productoCarrito")
+  console.log(`item a borrar ${itemABorrar}`)
+  let productoABorrar = itemABorrar.querySelector(".nombreProductoCarrito").textContent
+  carritoListado.buscarBorrarProducto(productoABorrar)
+  imprimirEnCarrito()
+}
+
+function getSumarButton(){
+  const sumarButtons = document.querySelectorAll(".sumarCantidadProducto")
+  sumarButtons.forEach((sumarButton) => (sumarButtonClick(sumarButton)))
+}
+function sumarButtonClick(sumarButton){
+  sumarButton.addEventListener("click", sumarButtonClicked)
+}
+function sumarButtonClicked(event){
+  let sumarBTN = event.target
+  let itemASumar = sumarBTN.closest(".productoCarrito")
+  let productoASumar = itemASumar.querySelector(".nombreProductoCarrito").textContent
+  carritoListado.buscarSumarProducto(productoASumar)
+  imprimirEnCarrito()
+}
+
+function getRestarButton(){
+  const restarButtons = document.querySelectorAll(".restarCantidadProducto")
+  restarButtons.forEach((restarButton) => (restarButtonClick(restarButton)))
+}
+function restarButtonClick(restarButton){
+  restarButton.addEventListener("click", restarButtonClicked)
+}
+function restarButtonClicked(event){
+  let restarBTN = event.target
+  let itemARestar = restarBTN.closest(".productoCarrito")
+  let productoARestar = itemARestar.querySelector(".nombreProductoCarrito").textContent
+  carritoListado.buscarRestarProducto(productoARestar)
+  imprimirEnCarrito()
 }

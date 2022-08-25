@@ -18,7 +18,7 @@ class ListaNadadores {
             this.nadadores.splice(index, 1)
             Swal.fire({
                 title: 'COMPETIDOR BORRADO CON EXITO',
-                text: 'Ingrese un nombre valido para su evento',
+                text: '',
                 icon: 'success',
                 confirmButtonText: 'Aceptar'
             })
