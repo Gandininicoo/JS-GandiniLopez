@@ -198,7 +198,7 @@ function abrirTienda() {
 
 //Tienda Natacion
 function importarProductos() {
-  fetch("../data/merch.json")
+  fetch("/data/merch.json")
     .then((response) => response.json())
     .then((json) => mostrarProductos(json))
     .then()
