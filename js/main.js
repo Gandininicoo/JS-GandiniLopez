@@ -176,10 +176,24 @@ tiendaBTN.addEventListener("click", () => {
 function abrirTienda() {
   pageName.innerText = "TIENDA DE NATACION";
   mainBody.innerHTML = `<div class="contenedorPieHeader headerTienda"> <div></div> <h1>Articulos de Natacion</h1> <button id="carritoBTN" class="carritoBTN carritoVacio"></button></div>
-                      <div id="productosImpresos"></div>`;
+                      <div id="productosImpresos"></div>
+                      <div id="carrito" class="carrito"><header><p>Carrito de compras</p> <button id="cerrarCarritoBTN" class="carritoBTN carritoCerrar"> </header> <div id="bodyCarrito"></div></div>`;
   importarProductos();
+  let cerrarCarritoBTN = document.getElementById("cerrarCarritoBTN")
+  cerrarCarritoBTN.addEventListener("click", () =>{cerrarCarrito()})
+  let carritoBTN = document.getElementById("carritoBTN")
+  carritoBTN.addEventListener("click", () =>{desplegarCarrito()})
+  function desplegarCarrito(){
+    const carritoDesplegado = document.getElementById ("carrito")
+    carritoDesplegado.setAttribute("class","carritoDesplegado carrito")
+    mainBody.appendChild (carritoDesplegado)
+  }
+  function cerrarCarrito(){
+    const carritoCerrado = document.getElementById ("carrito")
+    carritoCerrado.setAttribute("class","carrito")
+    mainBody.appendChild (carritoCerrado)
+  }
 }
-
 
 
 //Tienda Natacion
@@ -201,7 +215,7 @@ function mostrarProducto(producto) {
   const tarjetaProducto = document.createElement("div");
   const productoPrecio = Number(producto.precioProducto);
   tarjetaProducto.className += "tarjetaProducto";
-  tarjetaProducto.innerHTML = `<article class="imgProducto"><img src="${producto.img}" alt="${producto.nombreProducto}"></article>
+  tarjetaProducto.innerHTML = `<article class="imgProducto"><img class="imagenProducto" src="${producto.img}" alt="${producto.nombreProducto}"></article>
                             <h1 class="nombreProducto">${producto.nombreProducto}</h1>
                             <div class="contenedorPrecio"><p>AR$</p><h3 class="precioProducto">${productoPrecio}</h3></div>
                             <button class="addCartBTN"> Enviar al carrito</button>`;
@@ -226,18 +240,37 @@ function addtoCartClicked(event){
   let item = botonCarrito.closest(".tarjetaProducto")
   let itemNombre = item.querySelector(".nombreProducto").textContent
   let itemPrecio = Number(item.querySelector(".precioProducto").textContent)
-  let itemImagen = item.querySelector(".imgProducto").src
+  let itemImagen = item.querySelector(".imagenProducto").src
   let itemCantidad = Number(1)
+  let itemSubTotal = Number(item.querySelector(".precioProducto").textContent)
   console.log (itemNombre)
-  añadirAlCarrito(itemNombre, itemPrecio, itemImagen, itemCantidad);
+  añadirAlCarrito(itemNombre, itemPrecio, itemImagen, itemCantidad, itemSubTotal);
 }
-function añadirAlCarrito(itemNombre, itemPrecio, itemImagen,itemCantidad){
+function añadirAlCarrito(itemNombre, itemPrecio, itemImagen,itemCantidad,itemSubTotal){
     let productoCarrito = new ProductoCarrito(
       itemNombre,
       itemPrecio,
       itemImagen,
-      itemCantidad 
+      itemCantidad,
+      itemSubTotal
     );
     carritoListado.agregarProductoCarrito(productoCarrito)
+    imprimirEnCarrito()
     console.log(carrito)
+}
+
+function imprimirEnCarrito(){
+  let carritoAImprimir = document.getElementById("bodyCarrito")
+  carritoAImprimir.innerHTML= "";
+  carritoListado.carrito.forEach((productoCarrito) => {
+    const productoImpreso = document.createElement("div")
+    productoImpreso.setAttribute("class","productoCarrito")
+    productoImpreso.innerHTML = `<img class="imagenProductoCarrito" src="${productoCarrito.img}" alt="${productoCarrito.nombre}">
+                                  <p  class="nombreProductoCarrito">${productoCarrito.nombre}</p>
+                                  <div class="cantidadProductoCarrito"><button class="restarCantidadProducto">-</button><p>${productoCarrito.cantidad}</p><button class="sumarCantidadProducto">+</button></div>
+                                  <p  class="totalPrecioProductoCarrito">${productoCarrito.subTotal}</p>
+                                  <button class="eliminarProductoCarrito">X</button>
+    `
+    carritoAImprimir.appendChild(productoImpreso)
+  })
 }

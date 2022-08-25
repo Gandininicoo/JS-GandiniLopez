@@ -10,6 +10,7 @@
     min-height: 100vh;
     align-content: center;
     padding-bottom: 20px;
+    
 }
 .header{
     display: flex;
@@ -335,35 +336,96 @@
         }
     }
 }
-.backgroundcarrito{
-    display: none;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100vw;
-    min-height: 100%;
-    background-color: rgba(0,0,0,0);
-    z-index: 10;
-}
+
 .carrito{
     display: none;
     position: absolute;
-    align-self: center;
-    top: 150px;
+    top: 60px;
+    right: 0px;
     width:70vw;
-    height: auto;
-    min-height: 80vh;
+    height: 0px;
+    min-height: 0;
     max-height: 100%;
     background-color: #fff;
     border: 5px solid #527eef;
-    border-radius: 20px;
+    border-radius: 0px 0px 20px 20px;
     z-index: 20;
+    transition: all 500ms linear;
+    transition-duration: 1.2s;
     header{
+        display: flex;
+        justify-content: space-between;
+        padding: 0px 20px;
         height: 60px;
+        width: 100%;
         background-color: #527eef;
         width: 100%;
+        p{
+            align-self: center;
+            display: inline-block;
+            font-family: sans-serif;
+            color: #fff;
+            font-size: 1.6rem;
+        }
+        .carritoCerrar{
+            background-image: url(../img/carritoCerrar.png) ;
+            align-self: center;
+        }
+    }
+    #bodyCarrito{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        .productoCarrito{
+            display: inline-flex;
+            justify-content: space-between;
+            width: 100%;
+            height: 50px;
+            padding: .5em;
+            border: 2px solid #527eef;
+            margin: .5em;
+            .imagenProductoCarrito{
+                height: 100%;
+                aspect-ratio: 1 / 1;
+                width: auto;
+                align-self: center;
+            }
+            .nombreProductoCarrito{
+                width: 40%;
+            }
+            .cantidadProductoCarrito{
+                display: inline-block;
+                width: 20%;
+                align-self: center;
+            }
+            .totalPrecioProductoCarrito{
+                width: 20%;
+            }
+            p{
+                display: inline-block;
+                font-family: sans-serif;
+                font-size: 1rem;
+                color: #323d85;
+                align-self: center;
+            }
+            button{
+                margin: 0 .5em;
+                width: 20px;
+                height: 20px;
+                align-self: center;
+                border-radius: 20px;
+            }
+            .eliminarProductoCarrito{
+                background-color: red;
+                color: #fff;
+            }
+        }
     }
 }
-.carritoVisible{
+.carritoDesplegado{
     display: flex;
+    flex-wrap: wrap;
+    right: 0px;
+    min-height: 80vh;
+    align-content: flex-start;
 }
