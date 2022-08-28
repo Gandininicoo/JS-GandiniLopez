@@ -24,6 +24,9 @@ function ingresarNombreCliente(){(async () => {
     if (nombreCliente === ""){
       definirNombreCliente()
     }
+    else if(nombreCliente === undefined){
+      definirNombreCliente()
+    }
     else{
       swal.fire(`¡BIENVENIDO ${nombreCliente}!`)
       localStorage.setItem("nombreCliente", nombreCliente)
@@ -227,6 +230,9 @@ function abrirTienda() {
     carritoCerrado.setAttribute("class","carrito")
     mainBody.appendChild (carritoCerrado)
   }
+
+  
+  // ENVIAR COMPRA
   function enviarCompra(){
     let productosCarritoCantidadPrecio = carritoListado.carrito.reduce((acc, prod) => acc + " || " + prod.nombre + " | cantidad :" + prod.cantidad + " | sub total producto :" + prod.subTotal + " || ", "")
     if (productosCarritoCantidadPrecio === ""){
@@ -249,6 +255,9 @@ function abrirTienda() {
           autocorrect: 'off'
         }})
       if (contactoCliente === ""){
+        enviarCompra()
+      }
+      else if ((contactoCliente === undefined)){
         enviarCompra()
       }
       else{
