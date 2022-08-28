@@ -8,10 +8,38 @@ const mainBody = document.getElementById("mainBody");
 const creadorEventosBTN = document.getElementById("creadorEventosBTN");
 const tiendaBTN = document.getElementById("tiendaBTN");
 const pageName = document.getElementById("metaName");
-//imprimir
-printButton.addEventListener("click", () => {
-  window.print();
-});
+
+definirNombreCliente()
+
+function ingresarNombreCliente(){(async () => {
+  let { value: nombreCliente } = await Swal.fire({
+    title: 'Ingresa tu nombre',
+    input: 'text',
+    inputLabel: 'Bienvenido a nik-01, para continuar debe ingresar su nombre',
+    inputPlaceholder: 'Ingresa tu nombre',
+    inputAttributes: {
+      autocapitalize: 'off',
+      autocorrect: 'off'
+    }})
+    if (nombreCliente === ""){
+      definirNombreCliente()
+    }
+    else{
+      swal.fire(`¡BIENVENIDO ${nombreCliente}!`)
+      localStorage.setItem("nombreCliente", nombreCliente)
+    }
+})()
+}
+
+function definirNombreCliente() {
+  let nombreCliente = localStorage.getItem("nombreCliente")
+  console.log(nombreCliente)
+  if (nombreCliente === null || ""){
+  ingresarNombreCliente()}
+  else{
+    swal.fire(`¡BIENVENIDO DE NUEVO ${nombreCliente}!`, `Gracias por confiar en nosotros`)
+  }
+}
 
 //creador de eventos
 creadorEventosBTN.addEventListener("click", () => {
@@ -180,13 +208,15 @@ function abrirTienda() {
                       <div id="carrito" class="carrito">
                       <header><p>Carrito de compras</p> <button id="cerrarCarritoBTN" class="carritoBTN carritoCerrar"> </header>
                       <div id="bodyCarrito"></div>
-                      <footer><div><p>TOTAL CARRITO</p><div id="totalCarrito"></div></div> <button>Enviar Compra</butto></footer>
+                      <footer><div><p>TOTAL CARRITO</p><div id="totalCarrito"></div></div> <button id="enviarCompra">Enviar Compra</butto></footer>
                       </div>`;
   importarProductos();
   let cerrarCarritoBTN = document.getElementById("cerrarCarritoBTN")
   cerrarCarritoBTN.addEventListener("click", () =>{cerrarCarrito()})
   let carritoBTN = document.getElementById("carritoBTN")
   carritoBTN.addEventListener("click", () =>{desplegarCarrito()})
+  let enviarCompraBTN = document.getElementById("enviarCompra")
+  enviarCompraBTN.addEventListener("click", () =>{enviarCompra()})
   function desplegarCarrito(){
     const carritoDesplegado = document.getElementById ("carrito")
     carritoDesplegado.setAttribute("class","carritoDesplegado carrito")
@@ -197,7 +227,45 @@ function abrirTienda() {
     carritoCerrado.setAttribute("class","carrito")
     mainBody.appendChild (carritoCerrado)
   }
+  function enviarCompra(){
+    let productosCarritoCantidadPrecio = carritoListado.carrito.reduce((acc, prod) => acc + " || " + prod.nombre + " | cantidad :" + prod.cantidad + " | sub total producto :" + prod.subTotal + " || ", "")
+    if (productosCarritoCantidadPrecio === ""){
+      Swal.fire({
+        title: 'NO PUEDES REALIZAR UNA COMPRA VACIA',
+        text: 'Debes añadir al menos un producto al carrito.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'})
+    }
+    else{
+      ingresarContactoCliente()
+      async function ingresarContactoCliente(){
+      let { value: contactoCliente } = await Swal.fire({
+        title: '¿Como debemos contactarte?',
+        input: 'text',
+        inputLabel: 'Ingresa tu e-mail o numero de whatsapp',
+        inputPlaceholder: 'Ingresa tu nombre',
+        inputAttributes: {
+          autocapitalize: 'off',
+          autocorrect: 'off'
+        }})
+      if (contactoCliente === ""){
+        enviarCompra()
+      }
+      else{
+        
+        console.log(contactoCliente)
+        Swal.fire({
+          title: 'COMPRA ENVIADA CON EXITO',
+          text: 'Pronto nos pondremos en contacto para coordinar la entrega',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'})
+        carritoListado.carrito = []
+        imprimirEnCarrito()
+        imprimirTotalCarrito()
+      }}}
+  }
 }
+
 
 
 //Tienda Natacion
