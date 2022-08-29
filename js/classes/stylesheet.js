@@ -1,17 +1,15 @@
 const stylesheet = document.getElementById("stylesheet");
 cargarPreferenciaModo();
 
-console.log(stylesheet);
+
 const botonLM = document.getElementById("botonLM");
 botonLM.addEventListener("click", () => {
   lightMode();
-  console.log(stylesheet);
 });
 
 const botonDM = document.getElementById("botonDM");
 botonDM.addEventListener("click", () => {
   darkMode();
-  console.log(stylesheet);
 });
 
 function lightMode() {

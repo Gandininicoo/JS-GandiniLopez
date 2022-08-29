@@ -3,7 +3,7 @@ class CarritoListado{
         this.carrito = carrito;
     }
     agregarProductoCarrito(productoCarrito) {
-        let indexProducto = carrito.findIndex(prodCarrito => prodCarrito.nombre === productoCarrito.nombre)
+        let indexProducto = this.carrito.findIndex(prodCarrito => prodCarrito.nombre === productoCarrito.nombre)
         if (indexProducto >= 0){
             this.carrito[indexProducto].cantidad ++
             let subTotalCarrito = this.carrito[indexProducto].cantidad*this.carrito[indexProducto].precio

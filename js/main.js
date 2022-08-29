@@ -8,8 +8,17 @@ const mainBody = document.getElementById("mainBody");
 const creadorEventosBTN = document.getElementById("creadorEventosBTN");
 const tiendaBTN = document.getElementById("tiendaBTN");
 const pageName = document.getElementById("metaName");
-
+let headerBienvenida = document.getElementById("headerBienvenida");
 definirNombreCliente()
+
+let abrirTiendaBody = document.getElementById("tiendaBody")
+abrirTiendaBody.addEventListener("click", () => {
+  abrirTienda();
+});
+let abrirEventosBody = document.getElementById("eventosBody")
+abrirEventosBody.addEventListener("click", () => {
+  inicioCreadorEventos();
+});
 
 function ingresarNombreCliente(){(async () => {
   let { value: nombreCliente } = await Swal.fire({
@@ -28,20 +37,20 @@ function ingresarNombreCliente(){(async () => {
       definirNombreCliente()
     }
     else{
-      swal.fire(`¡BIENVENIDO ${nombreCliente}!`)
+      headerBienvenida.innerHTML = `<h1>¡BIENVENIDO ${nombreCliente}!</h1>`
       localStorage.setItem("nombreCliente", nombreCliente)
     }
 })()
 }
 
 function definirNombreCliente() {
-  let nombreCliente = localStorage.getItem("nombreCliente")
-  console.log(nombreCliente)
+  const nombreCliente = localStorage.getItem("nombreCliente")
   if (nombreCliente === null || ""){
   ingresarNombreCliente()}
   else{
-    swal.fire(`¡BIENVENIDO DE NUEVO ${nombreCliente}!`, `Gracias por confiar en nosotros`)
+    headerBienvenida.innerHTML = `<h1>¡BIENVENIDO DE NUEVO ${nombreCliente}!</h1>`
   }
+  return nombreCliente
 }
 
 //creador de eventos
@@ -56,25 +65,21 @@ function inicioCreadorEventos() {
                       </div>
                       <div id="menuCompetidores" class="menuCompetidores"></div>
                       <div id="Carrera"></div>
-                      <div id="tabla" class="table">
-                      </div>`;
+                      <div class="bodyTable"><table id="tabla" class="table">
+                      </table></div>
+                      <div class="barraExportarExcel"> <input type="button" id="botonExportar" value="Exportar evento a excel"> </div>`;
   botonCC.addEventListener("click", () => {
     crearCarrera();
   });
+  let botonEventoExportar =  document.getElementById("botonExportar")
+  botonEventoExportar.addEventListener("click", () => {tableToExcel('tabla', 'evento')})
 }
 const CrearCarreraBTN = document.getElementById("botonCC");
 
 //crear evento
 function crearCarrera() {
   const nombreCarrera = document.getElementById("nombreEvento").value;
-  if (nombreCarrera === null) {
-    Swal.fire({
-      title: "Nombre Invalido",
-      text: "Ingrese un nombre valido para su evento",
-      icon: "error",
-      confirmButtonText: "Aceptar",
-    });
-  } else if (nombreCarrera === "") {
+  if (nombreCarrera === "") {
     Swal.fire({
       title: "Nombre Invalido",
       text: "Ingrese un nombre valido para su evento",
@@ -125,21 +130,31 @@ function crearNadador() {
     let nombre = document.getElementById("nombre").value;
     let posicion = Number(document.getElementById("posicion").value);
     let tiempo = document.getElementById("tiempo").value;
-    if (nombre === null) {
+    if (nombre === "") {
       Swal.fire({
-        title: "Opcion Invalida",
-        text: "Ingrese una opcion válida para continuar",
-        icon: "question",
+        title: "Campos incompletos",
+        text: "Debe completar todos los campos para continuar",
+        icon: "warning",
         confirmButtonText: "Aceptar",
       });
-    } else if (nombre === "") {
+    } 
+    else if(posicion === "") {
       Swal.fire({
-        title: "Nombre Invalido",
-        text: "Ingrese un nombre valido para continuar",
-        icon: "error",
+        title: "Campos incompletos",
+        text: "Debe completar todos los campos para continuar",
+        icon: "warning",
         confirmButtonText: "Aceptar",
       });
-    } else {
+    } 
+    else if(tiempo === "") {
+      Swal.fire({
+        title: "Campos incompletos",
+        text: "Debe completar todos los campos para continuar",
+        icon: "warning",
+        confirmButtonText: "Aceptar",
+      });
+    } 
+    else {
       let nadador = new Nadador(
         listaNadadores.darCantidad() + 1,
         nombre,
@@ -176,7 +191,7 @@ function listarNadadores() {
     (nadador1, nadador2) => nadador1.posicion - nadador2.posicion
   );
   listaNadadores.nadadores.forEach((nadador) => {
-    const tablaNadador = document.createElement("table");
+    const tablaNadador = document.createElement("tr");
     tablaNadador.innerHTML = `<th>${nadador.posicion}</th> <td class="nadador">${nadador.nombre}</td> <td class="tiempo">${nadador.tiempo}</td>`;
     tablaNadadores.appendChild(tablaNadador);
   });
@@ -234,6 +249,8 @@ function abrirTienda() {
   
   // ENVIAR COMPRA
   function enviarCompra(){
+    let totalDeLaCompra = imprimirTotalCarrito()
+    let nombreClienteCarrito = definirNombreCliente() 
     let productosCarritoCantidadPrecio = carritoListado.carrito.reduce((acc, prod) => acc + " || " + prod.nombre + " | cantidad :" + prod.cantidad + " | sub total producto :" + prod.subTotal + " || ", "")
     if (productosCarritoCantidadPrecio === ""){
       Swal.fire({
@@ -261,14 +278,17 @@ function abrirTienda() {
         enviarCompra()
       }
       else{
-        
-        console.log(contactoCliente)
+        console.log(`                      - Nombre del cliente: ${nombreClienteCarrito} 
+                      - Contacto del cliente: ${contactoCliente}  
+                      - Resumen de la compra: ${productosCarritoCantidadPrecio}
+                      - Total de la compra: ${totalDeLaCompra}`)
         Swal.fire({
           title: 'COMPRA ENVIADA CON EXITO',
           text: 'Pronto nos pondremos en contacto para coordinar la entrega',
           icon: 'success',
           confirmButtonText: 'Aceptar'})
         carritoListado.carrito = []
+        carrito = []
         imprimirEnCarrito()
         imprimirTotalCarrito()
       }}}
@@ -312,7 +332,7 @@ function iniciarCarrito(){
 }
 function getCartButton(){
   const addCartButtons = document.querySelectorAll(".addCartBTN")
-  console.log(addCartButtons)
+  
   addCartButtons.forEach((addCartBTN)=>{addtoCartClick(addCartBTN)})
 }
 function addtoCartClick(addCartBTN){
@@ -338,7 +358,6 @@ function añadirAlCarrito(itemNombre, itemPrecio, itemImagen,itemCantidad,itemSu
     );
     carritoListado.agregarProductoCarrito(productoCarrito)
     imprimirEnCarrito()
-    console.log(carrito)
 }
 
 function imprimirEnCarrito(){
@@ -364,11 +383,12 @@ function imprimirTotalCarrito()
   let totalCarritoContenedor = document.getElementById("totalCarrito")
   let totalCarritoACobrar = carritoListado.carrito.reduce((acc, prod) => acc + prod.subTotal, 0)
   totalCarritoContenedor.innerText = `AR$ : ${totalCarritoACobrar}`
+  return totalCarritoACobrar
 }
 
 function getDeleteButton(){
   const deleteButtons = document.querySelectorAll(".eliminarProductoCarrito")
-  console.log(deleteButtons)
+  
   deleteButtons.forEach((deleteButton) => (deleteButtonClick(deleteButton)))
 }
 function deleteButtonClick(deleteButton){
@@ -377,7 +397,6 @@ function deleteButtonClick(deleteButton){
 function deleteButtonClicked(event){
   let deleteBTN = event.target
   let itemABorrar = deleteBTN.closest(".productoCarrito")
-  console.log(`item a borrar ${itemABorrar}`)
   let productoABorrar = itemABorrar.querySelector(".nombreProductoCarrito").textContent
   carritoListado.buscarBorrarProducto(productoABorrar)
   imprimirEnCarrito()
