@@ -58,6 +58,7 @@
     background-color: #323d85;
     border-radius: 20px;
     justify-content: center;
+    cursor: pointer;
     h1{
         font-size: 60px;
         text-align: center;
@@ -347,7 +348,11 @@
     border-radius: 20px;
     margin-top: 20px;
     justify-content: center;
+    .descripcionOculta{
+        display: none;
+    }
     .imgProducto{
+        cursor: pointer;
         width: 95%;
         img{
             aspect-ratio: 1 / 1;
@@ -384,6 +389,7 @@
         font-size: 1.5rem;
     }
     button{
+        cursor: pointer;
         max-height: 2em;
         background-color: #fff;
         border: 2px solid #323d85;

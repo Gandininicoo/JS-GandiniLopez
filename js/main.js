@@ -318,11 +318,36 @@ function mostrarProducto(producto) {
   tarjetaProducto.className += "tarjetaProducto";
   tarjetaProducto.innerHTML = `<article class="imgProducto"><img class="imagenProducto" src="${producto.img}" alt="${producto.nombreProducto}"></article>
                             <h1 class="nombreProducto">${producto.nombreProducto}</h1>
+                            <div class="descripcionOculta">${producto.descripcion}</div>
                             <div class="contenedorPrecio"><p>AR$</p><h3 class="precioProducto">${productoPrecio}</h3></div>
                             <button class="addCartBTN"> Enviar al carrito</button>`;
   productosImpresos.appendChild(tarjetaProducto)
+  mostrarDetalles()
 }
+//MOSTRAR DETALLES
 
+function mostrarDetalles(){
+  const mostrarDetallesButtons = document.querySelectorAll(".imgProducto")
+  mostrarDetallesButtons.forEach((mostrarDetallesBTN)=>{mostrarDetallesClick(mostrarDetallesBTN)})
+}
+function mostrarDetallesClick(mostrarDetallesBTN){
+  mostrarDetallesBTN.addEventListener("click", mostrarDetallesClicked)
+}
+function mostrarDetallesClicked (event){
+  let mostrarDetalles = event.target
+  let itemADetallar = mostrarDetalles.closest(".tarjetaProducto")
+  let itemADetallarNombre = itemADetallar.querySelector(".nombreProducto").textContent
+  let itemADetallarImagen = itemADetallar.querySelector(".imagenProducto").src
+  let itemADetallarDescripcion = itemADetallar.querySelector(".descripcionOculta").textContent
+  Swal.fire({
+    title: itemADetallarNombre,
+    text: itemADetallarDescripcion,
+    imageUrl: itemADetallarImagen,
+    imageWidth: 200,
+    imageHeight: 200,
+    imageAlt: itemADetallarNombre,
+  })
+}
 //Carrito
 
 function iniciarCarrito(){
@@ -332,7 +357,6 @@ function iniciarCarrito(){
 }
 function getCartButton(){
   const addCartButtons = document.querySelectorAll(".addCartBTN")
-  
   addCartButtons.forEach((addCartBTN)=>{addtoCartClick(addCartBTN)})
 }
 function addtoCartClick(addCartBTN){

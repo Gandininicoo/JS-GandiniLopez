@@ -1,15 +1,15 @@
 [
-    {"nombreProducto": "Gorro Speedo Black", "precioProducto":"8000","descripcion":"","img":"img/merch/gorro-speedo-black.jpg"},
-    {"nombreProducto": "Gorro Speedo Gold", "precioProducto":"8000","descripcion":"","img":"img/merch/gorro-speedo-gold.jpg"},
-    {"nombreProducto": "Gorro Speedo White", "precioProducto":"8000","descripcion":"","img":"img/merch/gorro-speedo-white.jpg"},
-    {"nombreProducto": "Speedo Fastskin LZR Hombre | Black", "precioProducto":"32000","descripcion":"","img":"img/merch/malla-speedo-fastskin-black.jpg"},
-    {"nombreProducto": "Speedo Fastskin LZR Hombre | Pink & Black", "precioProducto":"32000","descripcion":"","img":"img/merch/malla-speedo-fastskin-black-pink.jpg"},
-    {"nombreProducto": "Speedo Fastskin LZR Hombre | Violet", "precioProducto":"32000","descripcion":"","img":"img/merch/malla-speedo-fastskin-violet.jpg"},
-    {"nombreProducto": "Speedo Fastskin LZR Mujer | Black", "precioProducto":"41000","descripcion":"","img":"img/merch/malla-speedo-fastskin-dama-black.jpg"},
-    {"nombreProducto": "Speedo Fastskin LZR Mujer | Lightblue", "precioProducto":"41000","descripcion":"","img":"img/merch/malla-speedo-fastskin-dama-lightblue.jpg"},
-    {"nombreProducto": "Speedo Fastskin LZR Mujer | Pink & Black", "precioProducto":"41000","descripcion":"","img":"img/merch/malla-speedo-fastskin-dama-pinkblack.jpg"},
-    {"nombreProducto": "Speedo Fastskin LZR Hyper Blue", "precioProducto":"17000","descripcion":"","img":"img/merch/speedo-hyper-blue.jpg"},
-    {"nombreProducto": "Speedo Fastskin LZR Hyper Green", "precioProducto":"17000","descripcion":"","img":"img/merch/speedo-hyper-green.jpg"},
-    {"nombreProducto": "Speedo Fastskin LZR Hyper Black", "precioProducto":"17000","descripcion":"","img":"img/merch/speedo-hyper-grey.jpg"},
-    {"nombreProducto": "Speedo Fastskin LZR Hyper Orange", "precioProducto":"17000","descripcion":"","img":"img/merch/speedo-hyper-orange.jpg"}
+    {"nombreProducto": "Gorro Speedo Black", "precioProducto":"8000","descripcion":"Gorro de silicona anatomico ideal para el alto rendimiento","img":"img/merch/gorro-speedo-black.jpg"},
+    {"nombreProducto": "Gorro Speedo Gold", "precioProducto":"8000","descripcion":"Gorro de silicona anatomico ideal para el alto rendimiento","img":"img/merch/gorro-speedo-gold.jpg"},
+    {"nombreProducto": "Gorro Speedo White", "precioProducto":"8000","descripcion":"Gorro de silicona anatomico ideal para el alto rendimiento","img":"img/merch/gorro-speedo-white.jpg"},
+    {"nombreProducto": "Speedo Fastskin LZR Hombre - Black", "precioProducto":"32000","descripcion":"Malla de hombre con la ultima tecnologia de speedo que te permitira sacar lo mejor de vos","img":"img/merch/malla-speedo-fastskin-black.jpg"},
+    {"nombreProducto": "Speedo Fastskin LZR Hombre - Pink & Black", "precioProducto":"32000","descripcion":"Malla de hombre con la ultima tecnologia de speedo que te permitira sacar lo mejor de vos","img":"img/merch/malla-speedo-fastskin-black-pink.jpg"},
+    {"nombreProducto": "Speedo Fastskin LZR Hombre - Violet", "precioProducto":"32000","descripcion":"Malla de hombre con la ultima tecnologia de speedo que te permitira sacar lo mejor de vos","img":"img/merch/malla-speedo-fastskin-violet.jpg"},
+    {"nombreProducto": "Speedo Fastskin LZR Mujer - Black", "precioProducto":"41000","descripcion":"Malla de mujer con la ultima tecnologia de speedo que te permitira sacar lo mejor de vos","img":"img/merch/malla-speedo-fastskin-dama-black.jpg"},
+    {"nombreProducto": "Speedo Fastskin LZR Mujer - Lightblue", "precioProducto":"41000","descripcion":"Malla de mujer con la ultima tecnologia de speedo que te permitira sacar lo mejor de vos","img":"img/merch/malla-speedo-fastskin-dama-lightblue.jpg"},
+    {"nombreProducto": "Speedo Fastskin LZR Mujer - Pink & Black", "precioProducto":"41000","descripcion":"Malla de mujer con la ultima tecnologia de speedo que te permitira sacar lo mejor de vos","img":"img/merch/malla-speedo-fastskin-dama-pinkblack.jpg"},
+    {"nombreProducto": "Speedo Fastskin Hyper Blue", "precioProducto":"17000","descripcion":"Las mejores antiparras del mundo, con un diseño anatomico para un mejor ajuste y comodidad","img":"img/merch/speedo-hyper-blue.jpg"},
+    {"nombreProducto": "Speedo Fastskin Hyper Green", "precioProducto":"17000","descripcion":"Las mejores antiparras del mundo, con un diseño anatomico para un mejor ajuste y comodidad","img":"img/merch/speedo-hyper-green.jpg"},
+    {"nombreProducto": "Speedo Fastskin Hyper Black", "precioProducto":"17000","descripcion":"Las mejores antiparras del mundo, con un diseño anatomico para un mejor ajuste y comodidad","img":"img/merch/speedo-hyper-grey.jpg"},
+    {"nombreProducto": "Speedo Fastskin Hyper Orange", "precioProducto":"17000","descripcion":"Las mejores antiparras del mundo, con un diseño anatomico para un mejor ajuste y comodidad","img":"img/merch/speedo-hyper-orange.jpg"}
 ]

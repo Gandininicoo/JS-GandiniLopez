@@ -58,6 +58,7 @@
     justify-content: center;
 }
 .contenedoresInicio{
+    cursor: pointer;
     margin: 20px;
     display: flex;
     aspect-ratio: 9/3;
@@ -339,8 +340,7 @@
     width: 90%;
     align-self: center;
 }
-.tarjetaProducto{
-    padding: 20px;
+.tarjetaProducto{    padding: 20px;
     display: flex;
     flex-wrap: wrap;
     width: 20%;
@@ -349,7 +349,11 @@
     border-radius: 20px;
     margin-top: 20px;
     justify-content: center;
+    .descripcionOculta{
+        display: none;
+    }
     .imgProducto{
+        cursor: pointer;
         width: 95%;
         img{
             aspect-ratio: 1 / 1;
@@ -386,6 +390,7 @@
         font-size: 1.5rem;
     }
     button{
+        cursor: pointer;
         max-height: 2em;
         background-color: #0f1433;
         border: 2px solid #527eef;
