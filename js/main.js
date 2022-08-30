@@ -226,7 +226,7 @@ function abrirTienda() {
                       <div id="carrito" class="carrito">
                       <header><p>Carrito de compras</p> <button id="cerrarCarritoBTN" class="carritoBTN carritoCerrar"> </header>
                       <div id="bodyCarrito"></div>
-                      <footer><div><p>TOTAL CARRITO</p><div id="totalCarrito"></div></div> <button id="enviarCompra">Enviar Compra</butto></footer>
+                      <footer><div><p>TOTAL CARRITO</p><div id="totalCarrito"></div></div> <button id="vaciarCarrito">Vaciar Carrito</button> <button id="enviarCompra">Enviar Compra</button></footer>
                       </div>`;
   importarProductos();
   let cerrarCarritoBTN = document.getElementById("cerrarCarritoBTN")
@@ -246,7 +246,31 @@ function abrirTienda() {
     mainBody.appendChild (carritoCerrado)
   }
 
-  
+  // VACIAR CARRITO
+  vaciarCarrito()
+  function vaciarCarrito(){
+    let vaciarCarritoBTN = document.getElementById("vaciarCarrito")
+    vaciarCarritoBTN.addEventListener("click", ()=>{
+      if(carrito === []){
+        Swal.fire({
+          title: 'EL CARRITO YA ESTA VACIO',
+          text: '',
+          icon: 'info',
+          confirmButtonText: 'Aceptar'})
+      }
+      else{
+      Swal.fire({
+          title: 'CARRITO VACIADO',
+          text: '',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'})
+      carritoListado.carrito = []
+      carrito = []
+      imprimirEnCarrito()
+      imprimirTotalCarrito()
+      }
+    })
+  }
   // ENVIAR COMPRA
   function enviarCompra(){
     let totalDeLaCompra = imprimirTotalCarrito()

@@ -480,6 +480,7 @@
                 align-self: center;
             }
             button{
+                cursor: pointer;
                 margin: 0 .5em;
                 width: 20px;
                 height: 20px;
@@ -512,10 +513,17 @@ footer{
         font-size: 1.2rem;
     }
     button{
+        cursor: pointer;
         align-self: center;
         padding: .5em;
         align-self: center;
         border-radius: 20px;
+    }
+    #vaciarCarrito{
+        margin-right: 4px;
+        background-color: rgba($color: #fff, $alpha: .3);
+        color: #fff;
+        border-color: #fff;
     }
 }
 .carritoDesplegado{
