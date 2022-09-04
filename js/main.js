@@ -251,7 +251,8 @@ function abrirTienda() {
   function vaciarCarrito(){
     let vaciarCarritoBTN = document.getElementById("vaciarCarrito")
     vaciarCarritoBTN.addEventListener("click", ()=>{
-      if(carrito === []){
+      let carritoVacio = []
+      if(carritoListado.carrito = carritoVacio){
         Swal.fire({
           title: 'EL CARRITO YA ESTA VACIO',
           text: '',
