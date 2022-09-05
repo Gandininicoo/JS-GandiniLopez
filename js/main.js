@@ -276,7 +276,8 @@ function abrirTienda() {
   function enviarCompra(){
     let totalDeLaCompra = imprimirTotalCarrito()
     let nombreClienteCarrito = definirNombreCliente() 
-    let productosCarritoCantidadPrecio = carritoListado.carrito.reduce((acc, prod) => acc + " || " + prod.nombre + " | cantidad :" + prod.cantidad + " | sub total producto :" + prod.subTotal + " || ", "")
+    let productosCarritoCantidadPrecio = carritoListado.carrito.reduce((acc, prod) => acc + ` 
+                      || ` + prod.nombre + " | cantidad :" + prod.cantidad + " | sub total producto :" + prod.subTotal + " || ", "")
     if (productosCarritoCantidadPrecio === ""){
       Swal.fire({
         title: 'NO PUEDES REALIZAR UNA COMPRA VACIA',
